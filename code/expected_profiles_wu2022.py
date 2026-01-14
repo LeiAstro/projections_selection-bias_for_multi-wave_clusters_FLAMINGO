@@ -76,7 +76,7 @@ def mass_pdf_weighted_lensing_with_sampling_err(
     -------
     ds_mean, ds_err, M_centers, pdf_rich
     """
-    
+
     mass      = np.asarray(mass, float)
     ds_all    = np.asarray(delta_sigma, float)
     rich_mask = np.asarray(rich_mask, bool)
@@ -326,7 +326,7 @@ def mass_matched_sample_expected(
     """
     Wu+2022 Appendix B method (ii): build a random 'mass-matched' sample
     that matches the mass PDF of the richness-selected sample (sel_mask),
-    with total size = factor * N_selected (draw with replacement if needed). 
+    with total size = factor * N_selected (draw with replacement if needed).
     *** Note: NOT exclude the observed halos ***
     Returns
     -------
@@ -372,7 +372,7 @@ def mass_matched_sample_expected(
                 raise ValueError(f"Mass bin {i} has 0 halos but needs {k} draws.")
             replace = (k > pool.size)
             draw_idx.append(rng.choice(pool, size=k, replace=replace))
-        # in case, the sample is empty    
+        # in case, the sample is empty
         if len(draw_idx) == 0:
             exp_all[t, :] = np.nan
             continue
@@ -433,7 +433,7 @@ def shuffled_richness_selection_bias_ratio(
 ):
     """
     Wu+2022 Appendix B method (i): shuffle richness within narrow mass bins
-    to erase correlated residuals between richness and lensing at fixed mass. :contentReference[oaicite:3]{index=3}
+    to erase correlated residuals between richness and lensing at fixed mass.
 
     Then compute ratio:
         R(rp) = <lensing(profile) | selected by lambda> / <lensing(profile) | selected by lambda_shuff>
@@ -441,7 +441,7 @@ def shuffled_richness_selection_bias_ratio(
     Selection options (pick ONE):
       A) lam_range=(lam_lo, lam_hi): select by richness thresholds (faithful to "richness bin")
       B) sel_mask: if provided, uses same-N selection by rank (requires rank_slice=None; see below)
-      C) rank_slice=(start,end): select by richness rank interval (fits the fixed-count bins)
+      C) rank_slice=(start,end): select by richness rank interval (fits the fixed-count bins as DESY1 cluster numbers)
 
     Returns
     -------
@@ -524,4 +524,3 @@ def shuffled_richness_selection_bias_ratio(
     ratio_mean = np.nanmean(ratio_all, axis=0)
     ratio_std  = np.nanstd(ratio_all, axis=0, ddof=1)
     return ratio_mean, ratio_std
-
