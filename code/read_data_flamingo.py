@@ -214,8 +214,8 @@ def calc_mean_lensing_with_std_err(delta_sigma, sigma, mean_type="linear"):
     ds = np.array(delta_sigma, dtype=float)
     sg = np.array(sigma, dtype=float)
 
-    ds[ds <= 0] = np.nan
-    sg[sg <= 0] = np.nan
+    #ds[ds <= 0] = np.nan
+    #sg[sg <= 0] = np.nan
 
     counts_ds = np.sum(~np.isnan(ds), axis=0)
     counts_sg = np.sum(~np.isnan(sg), axis=0)
@@ -258,7 +258,7 @@ def calc_mean_cy_with_std_err(profile, mean_type="linear"):
     mean_type: "linear" or "log"
     """
     x = np.array(profile, dtype=float)
-    x[x <= 0] = np.nan
+    #x[x <= 0] = np.nan
 
     counts = np.sum(~np.isnan(x), axis=0)
 

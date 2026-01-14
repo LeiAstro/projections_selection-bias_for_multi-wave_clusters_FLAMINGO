@@ -238,7 +238,7 @@ def mass_pdf_weighted_per_halo_lensing(
     # Weighted mean profile across all halos
     if mean_type == "log":
         x = prof.copy()
-        x[x <= 0] = np.nan
+        #x[x <= 0] = np.nan
         x = np.log(x)
     else:
         x = prof
@@ -288,7 +288,7 @@ def mass_pdf_weighted_per_halo_lensing(
 
 def _stack_from_samples(samples_2d, mean_type="linear"):
     x = np.array(samples_2d, dtype=float)
-    x[x <= 0] = np.nan
+    #x[x <= 0] = np.nan
 
     counts = np.sum(~np.isnan(x), axis=0)
 
@@ -393,7 +393,7 @@ def stack_profile_mean(profile_2d, mask, mean_type="linear"):
 
     # match the function calc_mean_lensing_with_std_err
     # drop <=0 always
-    x[x <= 0] = np.nan
+    #x[x <= 0] = np.nan
 
     counts = np.sum(~np.isnan(x), axis=0)
 
